@@ -3,18 +3,16 @@
   "version": "0.0.1",
   "license": "MIT",
   "devDependencies": {
-    "grunt-newer": "^1.1.2"
-  },
-  "dependencies": {
     "grunt": "^0.4.4"
   },
-  "description": "A grunt plugin for fontend to bust cache via update file reference's parameter of timestamp. Recommend using with 'grunt-newer'.",
-  "main": "Gruntfile.js",
-  "directories": {
-    "test": "test"
+  "dependencies": {
+    "grunt-newer": "^1.1.2"
   },
+  "description": "A grunt plugin for fontend to bust cache via update file reference's parameter of timestamp.",
+  "main": "Gruntfile.js",
+  "directories": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt reference"
   },
   "repository": {
     "type": "git",
