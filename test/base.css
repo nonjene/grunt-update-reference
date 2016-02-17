@@ -1,0 +1,13 @@
+@charset "utf-8";
+a,b,body,button,dd,div,dl,dt,em,fieldset,form,h1,h2,h3,h4,h5,h6,html,i,iframe,img,input,label,legend,li,p,pre,span,strong,table,tbody,td,tfoot,th,thead,tr,ul {margin:0;padding:0;outline:0;border:0}
+h1,h2,h3,h4,h5,h6 {font-size:100%}
+body {font:12px/1.5 "Microsoft Yahei",SimSun}
+ul {list-style:none}
+a {text-decoration:none}
+a:hover {text-decoration:none}
+a,button {cursor:pointer}
+
+.t {background: url("./share.jpg?t=1455674535154")}
+.t2{
+    background:url("./share.jpg?t=1455674535154");
+}

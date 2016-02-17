@@ -1,0 +1,36 @@
+{
+  "name": "grunt-update-reference",
+  "version": "0.0.1",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-newer": "^1.1.2"
+  },
+  "dependencies": {
+    "grunt": "^0.4.4"
+  },
+  "description": "A grunt plugin for fontend to bust cache via update file reference's parameter of timestamp. Recommend using with 'grunt-newer'.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nonjene/grunt-update-reference.git"
+  },
+  "keywords": [
+    "grunt",
+    "gruntplugin",
+    "file",
+    "reference",
+    "cacheBust",
+    "timestamp"
+  ],
+  "author": "nonjene",
+  "bugs": {
+    "url": "https://github.com/nonjene/grunt-update-reference/issues"
+  },
+  "homepage": "https://github.com/nonjene/grunt-update-reference#readme"
+}
