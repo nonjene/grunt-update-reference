@@ -1,15 +1,13 @@
 'use strict';
-var fs = require('fs');
 module.exports = function ( grunt ) {
 
 //reference
     grunt.initConfig( {
         reference: {
             options:{
-                searchFileType: [ "html", "css", "js" ],
-                ignoreSearchFile:"",
-                ignoreSearchPath:""
-
+                searchFileType: [ "*.html", "*.js", "*.css" ],
+                ignore:"",
+                newer:true
             },
             dist: {
                 options: {
@@ -21,9 +19,7 @@ module.exports = function ( grunt ) {
         },
         test:{
             options: {
-                searchFileType: [ "html", "css", "js" ],
-                ignoreSearchFile: "",
-                ignoreSearchPath: ""
+
 
             },
             dist: {
@@ -37,8 +33,10 @@ module.exports = function ( grunt ) {
     } );
 
     grunt.registerMultiTask( "test", function () {
-        console.dir(this)
+        //console.dir(this)
+        console.log(grunt.file.match( { matchBase: true },[".*"], ".Gruntfile.js" ).length)
+
     } );
     grunt.loadTasks('./tasks');
-    grunt.loadNpmTasks('grunt-newer');
+    //grunt.loadNpmTasks('grunt-newer');
 };

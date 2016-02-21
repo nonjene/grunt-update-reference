@@ -1,19 +1,8 @@
 
 var version = require( "../lib/version" );
-var newer = require('grunt-newer');
 
 module.exports = function ( grunt ) {
-
-    function convertMatcher( tar ) {
-        var kind = grunt.util.kindOf( tar );
-        if ( kind === "array" ) {
-            return new RegExp( tar.join( "|" ) );
-        }else if(kind === "string"){
-            return new RegExp( tar );
-        }
-        return tar;
-    }
-
+    grunt.loadNpmTasks( 'grunt-newer' );
 
     /**
      * @taskName   任务reference_core的任务名,为何要搞多一个呢,因为用来骗grunt-newer识别并纪录时间戳, 保证不同的任务区分开来,
@@ -21,7 +10,8 @@ module.exports = function ( grunt ) {
      */
     grunt.registerMultiTask( "reference", "bust cache via updating the timestamp of the reference in a file like html,css,js", function () {
         var opt = this.options( {
-            newer: true
+            newer: true,
+            searchFileType: [ "*.html", "*.js", "*.css" ]
         } );
         var newer = opt.newer?"newer:":"";
         var taskName = this.target+opt.searchPathBase.replace( /\.|\//g, "_" );
@@ -40,9 +30,8 @@ module.exports = function ( grunt ) {
     grunt.registerMultiTask( "reference_core", "handle all file", function () {
         var opt = this.options();
         var searchPathBase = opt.searchPathBase;
-        var searchFileType = convertMatcher(opt.searchFileType || /htm|css|js/);
-        var ignoreSearchFile = convertMatcher(opt.ignoreSearchFile || /Gruntfile|(^\.)/);
-        var ignoreSearchPath = convertMatcher(opt.ignoreSearchPath || /node_modules|(^\.)/);
+        var searchFileType = opt.searchFileType;
+        var ignore = opt.ignore || ["node_modules/**/*",".*/**/*",".*","Gruntfile.js"];
         var newFileName = [];
 
         if(!searchPathBase){
@@ -58,7 +47,7 @@ module.exports = function ( grunt ) {
         if ( newFileName.length === 0 ) {
             return grunt.log.writeln( "No Changed File" + searchPathBase.green );
         }
-        version.upd( searchPathBase, newFileName, searchFileType, ignoreSearchFile, ignoreSearchPath );
+        version.upd( searchPathBase, newFileName, searchFileType, ignore );
 
     } );
 
