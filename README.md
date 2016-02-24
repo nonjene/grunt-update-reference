@@ -59,13 +59,13 @@ Preparing TO Check New Files...
 Running "newer:reference_core:dist__path" (newer) task
 
 Running "reference_core:dist__path" (reference_core) task
-File Changed: foo.css
+File Changed: foo.jpg
 scan files in ./path
 check 'foo.jpg' in bar.css
 in file bar.css replace:
-    background:url("./share.jpg");
+    background:url("./foo.jpg");
 --->
-    background:url("./share.jpg?t=1456071676251");
+    background:url("./foo.jpg?t=1456071676251");
 File bar.css instantly changed, rescan path.
 +       scan files in ./path
 +       check 'bar.css' in index.html
