@@ -7,7 +7,7 @@ Grunt task for updating the newer changed resources's reference, to achieve cach
 It can also instantly update reference of one file which its content not changed by us, but changed by this task(updating reference).
 
 It can identify the newer file(first run will consider all match file is newer), it will configure other two task to achieve it (newer check is achieved by [grunt-newer](https://github.com/tschaub/grunt-newer),
-it will load automatically if your project is not install).
+it will load automatically if it haven't installed in your project).
 
 Task will print colored change log in console, for checking what modify the task has done.
 
