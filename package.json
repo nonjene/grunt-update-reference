@@ -1,6 +1,6 @@
 {
   "name": "grunt-update-reference",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.4"
@@ -8,7 +8,7 @@
   "dependencies": {
     "grunt-newer": "^1.1.2"
   },
-  "description": "A grunt plugin for fontend to bust cache via update file reference's parameter of timestamp.",
+  "description": "A grunt plugin for fontend to bust cache via update file reference's timestamp parameter.",
   "main": "Gruntfile.js",
   "directories": {},
   "scripts": {
