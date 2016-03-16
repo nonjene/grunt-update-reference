@@ -6,12 +6,14 @@ module.exports = function ( grunt ) {
         reference: {
             options:{
                 searchFileType: [ "*.html", "*.js", "*.css" ],
-                ignore:"",
-                newer:true
+                searchIgnore:["lib/**/*","tasks/**/*"],
+                newer:0,
+                log:"simple"//"none","all"
             },
             dist: {
                 options: {
-                    searchPathBase: "./test"
+                    searchPathBase: "./test",
+                    referenceIgnore:["*.html"]
 
                 },
                 src: [ "test/**/*.{css,js,jpg,png,gif}" ]
@@ -34,7 +36,8 @@ module.exports = function ( grunt ) {
 
     grunt.registerMultiTask( "test", function () {
         //console.dir(this)
-        console.log(grunt.file.match( { matchBase: true },[".*"], ".Gruntfile.js" ).length)
+        //console.log(grunt.file.match( { matchBase: true },[".*"], ".Gruntfile.js" ).length)
+        console.log( grunt.util._.merge([1,2],[3,4]))
 
     } );
     grunt.loadTasks('./tasks');

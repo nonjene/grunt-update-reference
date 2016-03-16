@@ -30,19 +30,23 @@ Then, add and configure it to your Gruntfile.js:
 grunt.initConfig({
     reference: {
         options:{
-            //The files contain some reference.
+            //Define what files contain some reference.
             searchFileType: [ "*.html", "*.js", "*.css" ],
-            //If has some file/path to ignore, path is base on "options.searchPathBase". Default is [".*/**/*",".*"]
-            ignore:"",
+            //If has some file or path to ignore, path is base on "options.searchPathBase".
+            searchIgnore:[],
             //True to enble newer check. Default is true. Set false to prevent checking newer file.
-            newer:true
+            newer:true,
+            //Task's log, "simple", "all" or "none"
+            log:"simple"
         },
         dist: {
             options: {
                 //The base path.
-                searchPathBase: "./path"
+                searchPathBase: "./path",
+                //Prevent watch instantly changes, which changed by this task.
+                referenceIgnore:["*.html"]
             },
-            //The reference's file.
+            //What kind of files are referenced in 'searchFile'.
             src: [ "path/**/*.{css,js,jpg,png,gif}" ]
         }
     }
@@ -50,6 +54,8 @@ grunt.initConfig({
 ```
 
 Run the `grunt reference` task:
+
+If set `log` to "simple", the log will be like this: 
 
 ```bash
 $ grunt reference
@@ -60,7 +66,23 @@ Running "newer:reference_core:dist__path" (newer) task
 
 Running "reference_core:dist__path" (reference_core) task
 File Changed: foo.jpg
-scan files in ./path
+refresh foo.jpg's reference in bar.css
+refresh bar.css's reference in index.html
+Done, without errors.
+```
+
+If set `log` to "all": 
+
+```bash
+$ grunt reference
+Running "reference:dist" (reference) task
+Preparing TO Check New Files...
+
+Running "newer:reference_core:dist__path" (newer) task
+
+Running "reference_core:dist__path" (reference_core) task
+File Changed: foo.jpg
+Scan above files' reference in ./path
 check 'foo.jpg' in bar.css
 in file bar.css replace:
     background:url("./foo.jpg");
@@ -76,3 +98,5 @@ File bar.css instantly changed, rescan path.
 
 Done, without errors.
 ```
+
+
