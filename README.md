@@ -11,6 +11,8 @@ it will load automatically if it haven't installed in your project).
 
 Task will print colored change log in console, for checking what modify the task has done.
 
+It will only hit the file name, need not match the entire path.
+
 ## Getting Started
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [`gruntfile.js`](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
@@ -33,7 +35,7 @@ grunt.initConfig({
             //Define what files contain some reference.
             searchFileType: [ "*.html", "*.js", "*.css" ],
             //If has some file or path to ignore, path is base on "options.searchPathBase".
-            searchIgnore:[],
+            searchIgnore:[ "dont_touch_me.html","dont_touch_me/**/*" ],
             //True to enble newer check. Default is true. Set false to prevent checking newer file.
             newer:true,
             //Task's log, "simple", "all" or "none"
@@ -42,12 +44,12 @@ grunt.initConfig({
         dist: {
             options: {
                 //The base path.
-                searchPathBase: "./path",
+                searchPathBase: "./path_to",
                 //Prevent watch instantly changes, which changed by this task.
                 referenceIgnore:["*.html"]
             },
-            //What kind of files are referenced in 'searchFile'.
-            src: [ "path/**/*.{css,js,jpg,png,gif}" ]
+            //What kind of files that may needed to be update references.(path is not base on "options.searchPathBase")
+            src: [ "path_to/**/*.{css,js,jpg,png,gif}" ]
         }
     }
   });
@@ -62,9 +64,9 @@ $ grunt reference
 Running "reference:dist" (reference) task
 Preparing TO Check New Files...
 
-Running "newer:reference_core:dist__path" (newer) task
+Running "newer:reference_core:dist__path_to" (newer) task
 
-Running "reference_core:dist__path" (reference_core) task
+Running "reference_core:dist__path_to" (reference_core) task
 File Changed: foo.jpg
 refresh foo.jpg's reference in bar.css
 refresh bar.css's reference in index.html
@@ -78,17 +80,17 @@ $ grunt reference
 Running "reference:dist" (reference) task
 Preparing TO Check New Files...
 
-Running "newer:reference_core:dist__path" (newer) task
+Running "newer:reference_core:dist__path_to" (newer) task
 
-Running "reference_core:dist__path" (reference_core) task
+Running "reference_core:dist__path_to" (reference_core) task
 File Changed: foo.jpg
-Scan above files' reference in ./path
+Scan changed files' reference in ./path_to
 in file bar.css replace:
     background:url("./foo.jpg");
 --->
     background:url("./foo.jpg?t=1456071676251");
 File bar.css instantly changed, rescan path.
-+       scan files in ./path
++       scan files in ./path_to
 +       in file index.html replace:
 +       <link href="./bar.css?v=2" rel="stylesheet" type="text/css" />
 +       --->
