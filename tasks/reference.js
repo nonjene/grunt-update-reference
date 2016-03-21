@@ -25,7 +25,7 @@ module.exports = function ( grunt ) {
         grunt.config.merge( {
             reference_core: oKey
         } );
-        grunt.log.writeln( "Preparing TO Check New Files...".cyan );
+        //grunt.log.writeln( "Preparing TO Check New Files...".cyan );
         grunt.task.run( [ newer+"reference_core:" + taskName ] );
     });
 
