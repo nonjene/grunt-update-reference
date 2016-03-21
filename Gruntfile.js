@@ -7,7 +7,7 @@ module.exports = function ( grunt ) {
             options:{
                 searchFileType: [ "*.html", "*.js", "*.css" ],
                 searchIgnore:["lib/**/*","tasks/**/*"],
-                newer:0,
+                newer:1,
                 log:"simple"//"none","all"
             },
             dist: {
