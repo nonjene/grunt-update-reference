@@ -35,7 +35,7 @@ grunt.initConfig({
             //Define what files contain some reference.
             searchFileType: [ "*.html", "*.js", "*.css" ],
             //If has some file or path to ignore, path is base on "options.searchPathBase".
-            searchIgnore:[ "dont_touch_me.html","dont_touch_me/**/*" ],
+            searchIgnore:[ "ignore_me.html","ignore_me/**/*" ],
             //True to enble newer check. Default is true. Set false to prevent checking newer file.
             newer:true,
             //Task's log, "simple", "all" or "none"
