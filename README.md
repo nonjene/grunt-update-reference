@@ -56,7 +56,9 @@ grunt.initConfig({
 ```
 
 It is recommended to set `newer` task's `cache` folder to version controlled, to prevent conflict (repeatedly update reference) when project has muti contributors.
+
 In this case, **grunt-newer ^1.1.2 is required**.  If `grunt-newer` has been installed in project before, PLEASE consider it's version.
+
 so it's best to add [newer.option.cache](https://github.com/tschaub/grunt-newer#options-for-the-newer-task) to `initConfig`:
 
 ```js
