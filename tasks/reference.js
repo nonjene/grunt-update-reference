@@ -1,40 +1,19 @@
 
 var version = require( "../lib/version" );
 var util = require( "../lib/util" );
+var path = require( 'path' );
 
 module.exports = function ( grunt ) {
-    grunt.loadNpmTasks( 'grunt-newer' );
 
-    /**
-     * @taskName   任务reference_core的任务名,为何要搞多一个呢,因为用来骗grunt-newer识别并纪录时间戳, 保证不同的任务区分开来,
-     *             使用不同的时间戳. 避免grunt的一种使用情况下引起newer's bug
-     */
     grunt.registerMultiTask( "reference", "bust cache via updating the timestamp of the reference in a file like html,css,js", function () {
         var opt = this.options( {
-            newer: true,
             searchFileType: [ "*.html", "*.js", "*.css" ],
-            log:"simple"
+            log: "simple"
         } );
-        var newer = opt.newer?"newer:":"";
-        var taskName = this.target+opt.searchPathBase.replace( /\.|\//g, "_" );
-        var oKey = {};
-        oKey[ taskName ] = this.data;
-        oKey[ taskName ].options = opt;
-
-        //配置将克隆到reference_core
-        grunt.config.merge( {
-            reference_core: oKey
-        } );
-        //grunt.log.writeln( "Preparing TO Check New Files...".cyan );
-        grunt.task.run( [ newer+"reference_core:" + taskName ] );
-    });
-
-    grunt.registerMultiTask( "reference_core", "handle all file", function () {
-        var opt = this.options();
         var searchPathBase = opt.searchPathBase;
         var searchFileType = opt.searchFileType;
         var searchIgnore = [];
-        var newFileName = [];
+        var newFile = [];
 
         //
         var optSearchIgnore = opt.searchIgnore || opt.ignore;
@@ -50,14 +29,17 @@ module.exports = function ( grunt ) {
         }
 
         this.filesSrc.forEach( function ( fileDir ) {
-            opt.log!=="none"&&grunt.log.writeln( "File newer: " + fileDir.cyan );
-            newFileName.push( fileDir.split( "/" ).slice( -1 ).toString() );
+            opt.log!=="none"&&grunt.log.writeln( "Assets: " + fileDir.cyan );
+            newFile.push( {
+                dir: fileDir,
+                name: fileDir.split( "/" ).slice( -1 ).toString()
+            });
         } );
         //console.log( path)
-        if ( newFileName.length === 0 ) {
-            return grunt.log.writeln( "No Changed File" + searchPathBase.green );
+        if ( newFile.length === 0 ) {
+            return grunt.log.writeln( "No Assets Detected." + searchPathBase.green );
         }
-        version.upd( searchPathBase, newFileName, searchFileType, searchIgnore, opt.referenceIgnore, opt.log );
+        version.upd( searchPathBase, newFile, searchFileType, searchIgnore, opt.referenceIgnore, opt.log );
 
     } );
 
