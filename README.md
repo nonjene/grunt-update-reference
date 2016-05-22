@@ -1,17 +1,14 @@
 # grunt-update-reference
 
-Grunt task for updating the newer changed resources's reference, to get cache bust.
+Grunt task for updating the changed resources's reference, to get cache bust.
 
 ## Feature
 
 It can also instantly update reference of one file which its content not changed by us, but changed by this task.
 
-It can identify the newer file(first run will consider all match file is newer), it will configure other two task to achieve it (newer check is achieved by [grunt-newer](https://github.com/tschaub/grunt-newer),
-it will load automatically if it haven't installed in your project).
-
 Task will print colored change log in console, for checking what modify the task has done.
 
-It will only hit the file name, need not match the entire path.
+It will only match the file name.
 
 ## Getting Started
 
@@ -36,8 +33,6 @@ grunt.initConfig({
             searchFileType: [ "*.html", "*.js", "*.css" ],
             //If has some file or path to ignore, path is base on "options.searchPathBase".
             searchIgnore:[ "ignore_me.html","ignore_me/**/*" ],
-            //True to enble newer check. Default is true. Set false to prevent checking newer file.
-            newer:true,
             //Task's log, "simple", "all" or "none"
             log:"simple"
         },
@@ -55,22 +50,7 @@ grunt.initConfig({
   });
 ```
 
-It is recommended to set `newer` task's `cache` folder to version controlled, to prevent conflict (repeatedly update reference) when project has muti contributors.
 
-In this case, **grunt-newer ^1.1.2 is required**.  If `grunt-newer` has been installed in project before, PLEASE consider it's version.
-
-so it's best to add [newer.option.cache](https://github.com/tschaub/grunt-newer#options-for-the-newer-task) to `initConfig`:
-
-```js
-grunt.initConfig({
-    ...
-    newer: {
-        options: {
-            cache: './path_to_newer_cache_folder'
-        }
-    }
-});
-```
 
 Run the `grunt reference` task:
 
@@ -83,7 +63,7 @@ Running "reference:dist" (reference) task
 Running "newer:reference_core:dist__path_to" (newer) task
 Running "reference_core:dist__path_to" (reference_core) task
 
-File Changed: foo.jpg
+Assets: foo.jpg
 refresh foo.jpg's reference in bar.css
 refresh bar.css's reference in index.html
 
@@ -99,18 +79,18 @@ Running "reference:dist" (reference) task
 Running "newer:reference_core:dist__path_to" (newer) task
 Running "reference_core:dist__path_to" (reference_core) task
 
-File Changed: foo.jpg
+Assets: foo.jpg
 Scan changed files' reference in ./path_to
 in file bar.css replace:
     background:url("./foo.jpg");
 --->
-    background:url("./foo.jpg?t=1456071676251");
+    background:url("./foo.jpg?h=98e8485471");
 File bar.css instantly changed, rescan path.
 +       Scan changed files' reference in ./path_to
 +       in file index.html replace:
 +       <link href="./bar.css?v=2" rel="stylesheet" type="text/css" />
 +       --->
-+       <link href="./bar.css?t=1456071676251&v=2" rel="stylesheet" type="text/css" />
++       <link href="./bar.css?h=98e8485471&v=2" rel="stylesheet" type="text/css" />
 
 Done, without errors.
 ```
