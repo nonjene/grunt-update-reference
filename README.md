@@ -32,7 +32,7 @@ grunt.initConfig({
             //Define what files contain some reference.
             searchFileType: [ "*.html", "*.js", "*.css" ],
             //If has some file or path to ignore, path is base on "options.searchPathBase".
-            searchIgnore:[ "ignore_me.html","ignore_me/**/*" ],
+            searchIgnore:[ "ignore.html","ignore/**/*" ],
             //Task's log, "simple", "all" or "none"
             log:"simple"
         },
@@ -74,17 +74,17 @@ $ grunt reference
 
 Running "reference:dist" (reference) task
 Assets: foo.jpg
-Scan changed files' reference in ./path_to
+Scan assets' reference in ./path_to
 in file bar.css replace:
     background:url("./foo.jpg");
 --->
     background:url("./foo.jpg?h=98e8485471");
 File bar.css instantly changed, rescan path.
-+       Scan changed files' reference in ./path_to
++       Scan assets' reference in ./path_to
 +       in file index.html replace:
-+       <link href="./bar.css?v=2" rel="stylesheet" type="text/css" />
++       <link href="./bar.css" rel="stylesheet" type="text/css" />
 +       --->
-+       <link href="./bar.css?h=98e8485471&v=2" rel="stylesheet" type="text/css" />
++       <link href="./bar.css?h=98e8485471" rel="stylesheet" type="text/css" />
 
 Done, without errors.
 ```
