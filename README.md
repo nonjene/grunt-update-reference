@@ -60,9 +60,6 @@ If set `log` to "simple", the log will be like this:
 $ grunt reference
 
 Running "reference:dist" (reference) task
-Running "newer:reference_core:dist__path_to" (newer) task
-Running "reference_core:dist__path_to" (reference_core) task
-
 Assets: foo.jpg
 refresh foo.jpg's reference in bar.css
 refresh bar.css's reference in index.html
@@ -76,9 +73,6 @@ If set `log` to "all":
 $ grunt reference
 
 Running "reference:dist" (reference) task
-Running "newer:reference_core:dist__path_to" (newer) task
-Running "reference_core:dist__path_to" (reference_core) task
-
 Assets: foo.jpg
 Scan changed files' reference in ./path_to
 in file bar.css replace:
